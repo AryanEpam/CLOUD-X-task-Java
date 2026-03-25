@@ -77,8 +77,12 @@ public class OrderManagementService {
             return order;
 
         } catch (FeignException.NotFound e) {
-            log.debug("Order not found: {}", orderId);
-            return null;
+            log.info("No existing order found for session: {}, returning empty order", orderId);
+            Order emptyOrder = new Order();
+            emptyOrder.setId(orderId);
+            emptyOrder.setComplete(false);
+            emptyOrder.setProducts(new ArrayList<>());
+            return emptyOrder;
         } catch (FeignException fe) {
             log.error("Unable to retrieve order via Feign client: HTTP {} - {}", fe.status(), fe.getMessage(), fe);
             this.sessionUser.getTelemetryClient().trackException(fe);

@@ -104,7 +104,11 @@ public class OrderService {
         // Validate products exist before processing order
         if (order.getProducts() != null && !order.getProducts().isEmpty()) {
             List<Product> availableProducts = productService.getAvailableProducts();
-            validateProductsExist(order.getProducts(), availableProducts);
+            if (!availableProducts.isEmpty()) {
+                validateProductsExist(order.getProducts(), availableProducts);
+            } else {
+                log.warn("Product service returned empty product list, skipping product validation for order: {}", order.getId());
+            }
         }
 
         // Use getOrCreateOrder for updates (allows creation)

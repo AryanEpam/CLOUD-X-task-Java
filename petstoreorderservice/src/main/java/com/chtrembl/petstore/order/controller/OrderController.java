@@ -83,12 +83,12 @@ public class OrderController {
     public ResponseEntity<Order> getOrderById(
             @Parameter(description = "ID of the order to retrieve", required = true, example = "68FAE9B1D86B794F0AE0ADD35A437428")
             @PathVariable("orderId")
-            @Pattern(regexp = "^[0-9A-F]{32}$", message = "Order ID must be a 32-character uppercase hexadecimal string")
+            @Pattern(regexp = "^[0-9A-Fa-f]{32}$", message = "Order ID must be a 32-character hexadecimal string")
             String orderId) {
 
         log.info("Incoming GET request to /petstoreorderservice/v2/store/order/{}", orderId);
 
-        Order order = orderService.getOrderById(orderId);
+        Order order = orderService.getOrCreateOrder(orderId);
 
         // Enrich order with product details from product service
         List<Product> availableProducts = productService.getAvailableProducts();

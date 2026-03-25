@@ -26,8 +26,8 @@ public class Order {
 
 	@NotNull(message = "Order ID cannot be null")
 	@Pattern(
-			regexp = "^[0-9A-F]{32}$",
-			message = "Order ID must be a 32-character uppercase hexadecimal string"
+			regexp = "^[0-9A-Fa-f]{32}$",
+			message = "Order ID must be a 32-character hexadecimal string"
 	)
 	@Schema(
 			description = "Order identifier (typically session ID)",
