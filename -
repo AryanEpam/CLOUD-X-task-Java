@@ -1,0 +1,11 @@
+{
+  "id" : "test-order",
+  "sessionId" : "test-session-123",
+  "email" : "test@test.com",
+  "products" : [ {
+    "id" : 1,
+    "name" : "Test Product",
+    "quantity" : 2
+  } ],
+  "timestamp" : "2026-04-07T10:25:02.740893783Z"
+}

@@ -1,0 +1,16 @@
+{
+  "scriptFile" : "../orderitemsreserver-1.0.0.jar",
+  "entryPoint" : "com.chtrembl.petstore.orderitemsreserver.OrderItemsReserverFunction.run",
+  "bindings" : [ {
+    "type" : "httpTrigger",
+    "direction" : "in",
+    "name" : "req",
+    "methods" : [ "POST" ],
+    "authLevel" : "ANONYMOUS",
+    "route" : "order/reserve"
+  }, {
+    "type" : "http",
+    "direction" : "out",
+    "name" : "$return"
+  } ]
+}
